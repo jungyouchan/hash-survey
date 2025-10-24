@@ -1,0 +1,290 @@
+@media (max-width: 767px) { /*스마트폰*/
+  .underSpan {
+    margin-top: 2.2% !important;
+  }
+  .btn__text {
+	width: 4.38em !important;
+  height: 1.5em !important;
+  margin-top: -0.04em !important;
+  margin-left: -0.31em !important;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) { /*태블릿 세로*/
+  .btn__text {
+	width: 4.38em !important;
+  height: 1.5em !important;
+  margin-top: -0.08em !important;
+  margin-left: -0.26em !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) { /*태블릿 가로*/
+  .btn__text {
+    width: 4.43em !important;
+    height: 1.5em !important;
+    margin-top: -0.08em !important;
+    margin-left: -0.17em !important;
+  }
+}
+
+
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#input {
+  width: 90%;
+  height: 42%;
+  font-size: 24px;
+  background-color: aliceblue;
+}
+
+#graph {
+  width: 80%;
+  height: 55%;
+  background-color: lightgray;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.inputValue {
+    width: 60%;
+    display: grid;
+}
+
+.inputValue > input, .inputValue > label {
+    grid-area: 1/1;
+}
+
+input {
+    margin: auto;
+    width: 100%;
+    height: 85%;
+    font-size: 20px;
+    color: #222222;
+    border: none;
+    border-bottom: solid #aaaaaa 1px;
+    padding-bottom: 10px;
+    text-align: center;
+    background: none;
+    z-index: 5;
+}
+
+input::placeholder { color: #aaaaaa; }
+input:focus { outline: none; }
+
+.underSpan {
+    margin: auto;
+    margin-top: 0.5%;
+    display: block;
+    bottom: 0;
+    top: 40%;
+    background-color: #666;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    transform: translateX(0%);
+    transition: 0.55s;
+}
+
+label {
+    display: block;
+    margin: auto;
+    color: #aaa;
+    left: 50%;
+    transform: translateY(-25%);
+    font-size: 20px;
+    bottom: 6px;
+    transition: all .2s;
+}
+
+input:focus ~ label, input:valid ~ label {
+    font-size: 16px;
+    margin-top: -6%;
+    color: #666;
+    font-weight: bold;
+}
+
+input:focus ~ .underSpan, input:valid ~ .underSpan {
+    width: 101%;
+}
+
+.inputValue:has(#confirmPassword) {
+    opacity: 0;
+    transform: scale(0.1);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.inputValue:has(#confirmPassword.animation) {
+    opacity: 1;
+    transform: scale(1);    
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#submitBtn {
+  color: var(--fg1);
+  place-items: center;
+}
+
+:root {
+	--hue: 223;
+	--bg1: hsl(var(--hue),10%,90%);
+	--bg2: hsl(var(--hue),10%,80%);
+	--fg1: hsl(var(--hue),10%,10%);
+	--fg2: hsl(var(--hue),10%,20%);
+	--primary1: hsl(var(--hue),90%,55%);
+	--primary2: hsl(var(--hue),90%,45%);
+	font-size: calc(20px + (40 - 20) * (100vw - 320px) / (1280 - 320));
+}
+body, button {
+	font: 1em/1.5 Nunito, sans-serif;
+}
+
+/* Main button styles */
+.btn {
+	background-color: transparent;
+	border-radius: 1.5em;
+	display: block;
+	position: relative;
+	width: 7.5em;
+	height: 3em;
+	transition: width 0.3s ease-in-out;
+}
+.btn:not(:disabled):active {
+	transform: translateY(0.1em);
+}
+.btn__text {
+	background-color: var(--primary1);
+	border-radius: inherit;
+	color: hsl(0,0%,100%);
+	display: inline-block;
+	padding: 0.75em 1.5em;
+	transition:
+		background-color 0.15s linear,
+		color 0.15s 0.3s ease-in-out;
+	width: 4.43em;
+  height: 1.5em;
+  margin: 0;
+  margin-top: -0.08em;
+  margin-left: -0.12em;
+}
+.btn:not(:disabled):focus .btn__text,
+.btn:not(:disabled):hover .btn__text {
+	background-color: var(--primary2);
+}
+.btn__progress {
+	overflow: visible;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3em;
+	height: 3em;
+	visibility: hidden;
+}
+.btn__progress-track {
+	r: 12px;
+	stroke: var(--bg2);
+	stroke-width: 24;
+}
+.btn__progress-fill {
+	stroke: var(--primary1);
+	stroke-dashoffset: 125.66;
+}
+.btn__progress-check {
+	stroke: hsl(0,0%,100%);
+	stroke-dashoffset: 34;
+}
+
+/* Both states */
+.btn--running,
+.btn--done {
+	outline: none;
+	pointer-events: none;
+	width: 3em;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+.btn--running .btn__text,
+.btn--done .btn__text {
+	color: transparent;
+	transition:
+		background-color 0.3s ease-in-out,
+		visibility 0.3s steps(1);
+}
+.btn--running .btn__progress,
+.btn--done .btn__progress {
+	visibility: visible;
+}
+
+/* Running state */
+.btn--running .btn__text {
+	background-color: var(--bg2);
+	visibility: hidden; 
+}
+.btn--running .btn__progress {
+	transition: visibility 0.3s 0.3s steps(1,start);
+}
+.btn--running .btn__progress-track {
+	r: 20px;
+	stroke-width: 8;
+	transition:
+		r 0.3s 0.3s ease-in-out,
+		stroke-width 0.3s 0.3s ease-in-out;
+}
+.btn--running .btn__progress-fill {
+	stroke-dashoffset: 0;
+	transition: stroke-dashoffset 10s 0.6s linear; /*2s => 원 그래는데 걸리는 시간*/
+}
+
+.btn--fast .btn--running .btn__progress-fill {
+  transition-duration: 0.5s; /*원 그래는데 걸리는 시간*/
+}
+
+/* Done state */
+.btn--done .btn__progress-track {
+	stroke: var(--primary1);
+	transition:
+		r 0.3s ease-in-out,
+		stroke-width 0.3s ease-in-out;
+}
+.btn--done .btn__progress-check {
+	stroke-dashoffset: 0;
+	transition: stroke-dashoffset 0.3s 0.3s ease-out;
+}
+
+.btn--done > .btn__text {
+  visibility: hidden;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg1: hsl(var(--hue),10%,10%);
+		--bg2: hsl(var(--hue),10%,20%);
+		--fg1: hsl(var(--hue),10%,90%);
+		--fg2: hsl(var(--hue),10%,80%);
+	}
+}
