@@ -75,7 +75,7 @@ async function submit(Pw) {
 
     console.log("해싱 완료:", result);
 
-    const response = await fetch("https://encryption-pink.vercel.app/", { //배포 할때 바꿔야함 주소
+    const response = await fetch("https://encryption-pink.vercel.app/api/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
