@@ -81,9 +81,9 @@ async function submit(Pw) {
       body: JSON.stringify({
         id: Id,
         passwordHashes: {
-          SHA256: result[0].hash,
-          Argon2: result[1].hash,
-          Bcrypt: result[2].hash
+          SHA256: result[0].time_ms,
+          Argon2: result[1].time_ms,
+          Bcrypt: result[2].time_ms
         }
       })
     })
