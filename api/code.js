@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         // 클라이언트에서 보낸 데이터를 받기
         const Pw = req.body.password;
-        console.log("서버가 받은 데이터:", data);
+        console.log("서버가 받은 데이터:", Pw);
 
         const result = await Promise.all([
             hashWithSHA256(Pw),
