@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       const runClass = "btn--running";
       const doneClass = "btn--done";
-      const slowDuration = 4000; // 클릭 후 천천히 채우는 시간
+      const slowDuration = 3000; // 클릭 후 천천히 채우는 시간
       const fastDuration = 500;  // submit 완료 후 빠르게 채우는 시간
       const resetDuration = 1500;
 
