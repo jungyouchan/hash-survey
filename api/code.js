@@ -27,7 +27,7 @@ export default async function handler(req, res) {
             res.status(200).json({
                 success: true,
                 message: `데이터가 정상 처리되었습니다`,
-                receivedData: result
+                receivedData: result // result = [{hash, time_ms, algorithm}, ...]
             });
         } catch (error) {
             console.error("해싱 오류:", error);
