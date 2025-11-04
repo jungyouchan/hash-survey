@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     
             const result = await Promise.all([
                 hashWithSHA256(Pw),
-                hashWithArgon2(Pw),
+                //hashWithArgon2(Pw),
                 hashWithBcrypt(Pw)
             ]);
           
