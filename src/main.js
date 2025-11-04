@@ -67,11 +67,13 @@ async function submit(Pw) {
   const Id = document.getElementById("inputId").value;
 
   try {
-    const result = await Promise.all([
-      hashWithSHA256(Pw),
-      hashWithArgon2(Pw),
-      hashWithBcrypt(Pw)
-    ]);
+    const result = await fetch("https://hash-survey.vercel.app/api/code", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: Pw})
+    })
+
+    result = await result.json();
 
     console.log("해싱 완료:", result);
 
