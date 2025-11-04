@@ -73,7 +73,7 @@ async function submit(Pw) {
       body: JSON.stringify({ password: Pw})
     })
 
-    result = await instance.json();
+    const result = await instance.json();
 
     console.log("해싱 완료:", result);
 
