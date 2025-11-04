@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import argon2 from "argon2";
 
 export default async function handler(req, res) {
   // CORS 허용 헤더 추가
@@ -19,7 +20,7 @@ export default async function handler(req, res) {
     
             const result = await Promise.all([
                 hashWithSHA256(Pw),
-                //hashWithArgon2(Pw),
+                hashWithArgon2(Pw),
                 hashWithBcrypt(Pw)
             ]);
           

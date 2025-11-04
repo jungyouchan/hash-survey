@@ -12,6 +12,7 @@
     "vite": "^5.0.0"
   },
   "dependencies": {
+    "argon2": "^0.44.0",
     "argon2-browser": "^1.18.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2"
