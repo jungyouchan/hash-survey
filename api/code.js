@@ -52,17 +52,9 @@ async function hashWithSHA256(rawPassword) {
 
 async function hashWithArgon2(rawPassword) {
   const start = performance.now();
-  const res = await argon2.hash({
-    pass: rawPassword,
-    salt: "somesalt",
-    time: 2,
-    mem: 65536,
-    parallelism: 1,
-    wasmFile: "./argon2.wasm", // public/argon2.wasm 경로
-    type: argon2.ArgonType.Argon2id,
-  });
+  const hash = await argon2.hash(rawPassword); // ✅ 서버용 argon2 사용
   const time_ms = performance.now() - start;
-  return { hash: res.hashHex, time_ms, algorithm: "argon2" };
+  return { hash, time_ms, algorithm: "argon2" };
 }
 
 async function hashWithBcrypt(rawPassword) {
