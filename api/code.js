@@ -13,24 +13,27 @@ export default async function handler(req, res) {
   }
 
     if (req.method === 'POST') {
+        try {
+            const { password: Pw } = req.body;
+            console.log("서버가 받은 데이터:", Pw);
+    
+            const result = await Promise.all([
+                hashWithSHA256(Pw),
+                hashWithArgon2(Pw),
+                hashWithBcrypt(Pw)
+            ]);
+          
+            // 받은 데이터를 기반으로 응답을 보냄
+            res.status(200).json({
+                success: true,
+                message: `데이터가 정상 처리되었습니다`,
+                receivedData: result
+            });
+        } catch (error) {
+            console.error("해싱 오류:", error);
+            res.status(500).json({ success: false, message: "서버 오류가 발생했습니다." });
+        }
         // 클라이언트에서 보낸 데이터를 받기
-        const Pw = req.body.password;
-        console.log("서버가 받은 데이터:", Pw);
-
-        const result = await Promise.all([
-            hashWithSHA256(Pw),
-            hashWithArgon2(Pw),
-            hashWithBcrypt(Pw)
-        ]);
-      
-        // 받은 데이터를 기반으로 응답을 보냄
-        res.status(200).json({
-            success: true,
-            message: `데이터가 정상 처리되었습니다`,
-            receivedData: result
-        });
-
-        return;
     }
 }
 
