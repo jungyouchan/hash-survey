@@ -1,6 +1,6 @@
 // ✅ Node 런타임 강제 (Edge가 아닌 환경)
 export const config = {
-  runtime: "nodejs20.x",
+  runtime: "nodejs",
 };
 
 import bcrypt from "bcrypt";
