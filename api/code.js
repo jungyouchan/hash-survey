@@ -10,7 +10,7 @@ import argon2 from "argon2";
 
 export default async function handler(req, res) {
   // ✅ CORS 설정
-  res.setHeader("Access-Control-Allow-Origin", "https://hash-survey.vercel.app");
+  res.setHeader("Access-Control-Allow-Origin", "https://hash-survey-67fj4u6t6-yuchans-projects-8b9ada38.vercel.app/");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 

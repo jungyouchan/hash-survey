@@ -67,7 +67,7 @@ async function submit(Pw) {
   const Id = document.getElementById("inputId").value;
 
   try {
-    const instance = await fetch("https://hash-survey.vercel.app/api/code", {
+    const instance = await fetch("https://hash-survey-67fj4u6t6-yuchans-projects-8b9ada38.vercel.app/api/code", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password: Pw})
