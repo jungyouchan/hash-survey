@@ -91,7 +91,7 @@ async function hashWithArgon2(rawPassword) {
 // ✅ Bcrypt (CPU 집약)
 async function hashWithBcrypt(rawPassword) {
   const start = performance.now();
-  const saltRounds = 12;
+  const saltRounds = 16;
   const hash = await bcrypt.hash(rawPassword, saltRounds);
   const time_ms = performance.now() - start;
   return { algorithm: "Bcrypt", hash, time_ms: Math.round(time_ms) };
