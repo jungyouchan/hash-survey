@@ -67,13 +67,15 @@ export default async function handler(req, res) {
  * 🔐 각 해싱 함수 정의
  * ------------------------------- */
 
-// ✅ SHA-256 (동기식)
 async function hashWithSHA256(rawPassword) {
   const start = performance.now();
-  const hash = crypto.createHash("sha256").update(rawPassword).digest("hex");
-  const time_ms = performance.now() - start;
-  return { algorithm: "SHA-256", hash, time_ms: Math.round(time_ms) };
+  for (let i = 0; i < 1000; i++) {
+    crypto.createHash("sha256").update(rawPassword).digest("hex");
+  }
+  const time_ms = (performance.now() - start) / 1000; // 평균 1회당 ms
+  return { algorithm: "SHA-256", hash: "omitted", time_ms };
 }
+
 
 // ✅ Argon2 (메모리/CPU 집약)
 async function hashWithArgon2(rawPassword) {
