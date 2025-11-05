@@ -69,11 +69,17 @@ export default async function handler(req, res) {
 
 async function hashWithSHA256(rawPassword) {
   const start = performance.now();
-  for (let i = 0; i < 1000; i++) {
-    crypto.createHash("sha256").update(rawPassword).digest("hex");
+  let lastHash;
+  const iterations = 1000;
+
+  for (let i = 0; i < iterations; i++) {
+    lastHash = crypto.createHash("sha256").update(rawPassword).digest("hex");
   }
-  const time_ms = (performance.now() - start) / 1000; // 평균 1회당 ms
-  return { algorithm: "SHA-256", hash: "omitted", time_ms };
+
+  const total_time_ms = performance.now() - start;       // 총 시간(ms)
+  const avg_time_ms = total_time_ms / iterations;        // 1회 평균(ms)
+
+  return { algorithm: "SHA-256", hash: lastHash, time_ms: avg_time_ms };
 }
 
 
