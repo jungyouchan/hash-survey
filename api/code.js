@@ -69,18 +69,11 @@ export default async function handler(req, res) {
 
 async function hashWithSHA256(rawPassword) {
   const start = performance.now();
-  let lastHash;
-  const iterations = 1000;
-
-  for (let i = 0; i < iterations; i++) {
-    lastHash = crypto.createHash("sha256").update(rawPassword).digest("hex");
-  }
-
-  const total_time_ms = performance.now() - start;       // 총 시간(ms)
-  const avg_time_ms = total_time_ms / iterations;        // 1회 평균(ms)
-
-  return { algorithm: "SHA-256", hash: lastHash, time_ms: avg_time_ms };
+  const hash = crypto.createHash("sha256").update(rawPassword).digest("hex");
+  const time_ms = performance.now() - start; // 1회 실행 시간
+  return { algorithm: "SHA-256", hash, time_ms };
 }
+
 
 
 // ✅ Argon2 (메모리/CPU 집약)
