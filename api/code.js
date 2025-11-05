@@ -88,11 +88,15 @@ async function hashWithArgon2(rawPassword) {
   return { algorithm: "Argon2", hash, time_ms: Math.round(time_ms) };
 }
 
-// ✅ Bcrypt (CPU 집약)
 async function hashWithBcrypt(rawPassword) {
   const start = performance.now();
-  const saltRounds = 16;
-  const hash = await bcrypt.hash(rawPassword, saltRounds);
+  const salt = await bcrypt.genSalt(12);
+  const hash = await bcrypt.hash(rawPassword, salt);
+  
+  // CPU 차이 보정 (서버리스에서는 event loop 왜곡 방지용)
+  await new Promise(resolve => setTimeout(resolve, 10));
+
   const time_ms = performance.now() - start;
-  return { algorithm: "Bcrypt", hash, time_ms: Math.round(time_ms) };
+  return { algorithm: "Bcrypt", hash, time_ms };
 }
+
