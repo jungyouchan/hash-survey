@@ -80,8 +80,8 @@ async function hashWithSHA256(rawPassword) {
 async function hashWithArgon2(rawPassword) {
   const start = performance.now();
   const hash = await argon2.hash(rawPassword, {
-    timeCost: 2,
-    memoryCost: 65536,
+    timeCost: 4,
+    memoryCost: 131072,
     parallelism: 1,
     type: argon2.argon2id,
   });
@@ -95,7 +95,6 @@ async function hashWithBcrypt(rawPassword) {
   const hash = await bcrypt.hash(rawPassword, salt);
   
   // CPU 차이 보정 (서버리스에서는 event loop 왜곡 방지용)
-  await new Promise(resolve => setTimeout(resolve, 10));
 
   const time_ms = performance.now() - start;
   return { algorithm: "Bcrypt", hash, time_ms };
